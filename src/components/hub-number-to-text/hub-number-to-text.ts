@@ -1,9 +1,12 @@
 import { LitElement, css, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import { ToWords } from "to-words";
+import { PluginContract } from "@nintex/form-plugin-contract";
 
+@customElement("hub-number-to-text")
 export class HubNumberToText extends LitElement {
   @property({ type: String })
-  convertedvalue = "";
+  convertedvalue: string = "";
   @property({ type: ToWords })
   toWords = new ToWords({ localeCode: "fr-FR" });
   // Define scoped styles right with your component, in plain CSS
@@ -24,7 +27,7 @@ export class HubNumberToText extends LitElement {
     }
   `;
 
-  static getMetaConfig() {
+  static getMetaConfig(): Promise<PluginContract> | PluginContract {
     // plugin contract information
     return {
       controlName: "Material Text field",
@@ -49,27 +52,16 @@ export class HubNumberToText extends LitElement {
     };
   }
 
-  static properties = {
-    name: "Hello",
-    title: "Hello",
-    src: "https://www.wikipedia.org/",
-    height: "100%",
-  };
-
   // Render the UI as a function of component state
   render() {
     return html`<input
         type="number"
-        @change=${(e) => this.onInputValueChange(e.target.value)}
+        @change=${(e: any) => this.onInputValueChange(e.target.value)}
       />
       <div>${this.convertedvalue}</div>`;
   }
 
-  onInputValueChange(value) {
+  onInputValueChange(value: number) {
     this.convertedvalue = this.toWords.convert(value);
   }
 }
-
-// registering the web component.
-const elementName = "hub-number-to-text";
-customElements.define(elementName, HubNumberToText);
