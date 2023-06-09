@@ -1,0 +1,22 @@
+{
+  "name": "hub-nintex-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgi-hub/hub-nintex-components.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgi-hub/hub-nintex-components/issues"
+  },
+  "homepage": "https://github.com/mgi-hub/hub-nintex-components#readme",
+  "dependencies": {
+    "lit": "^2.7.5"
+  }
+}
