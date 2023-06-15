@@ -30,7 +30,7 @@ export class HubNumberToText extends LitElement {
   static getMetaConfig(): Promise<PluginContract> | PluginContract {
     // plugin contract information
     return {
-      controlName: "HubNumberToText",
+      controlName: "Hub Number To Text",
       fallbackDisableSubmit: false,
       iconUrl: "one-line-text",
       version: "1",
@@ -38,7 +38,6 @@ export class HubNumberToText extends LitElement {
         value: {
           type: "string",
           title: "Value",
-          // this is to mark the field as value field. it should only be defined once in the list of properties
           isValueField: true,
         },
       },
@@ -46,6 +45,7 @@ export class HubNumberToText extends LitElement {
         fieldLabel: true,
         description: true,
       },
+      events: ["ntx-value-change"],
     };
   }
 
@@ -60,5 +60,13 @@ export class HubNumberToText extends LitElement {
 
   onInputValueChange(value: number) {
     this.convertedvalue = this.toWords.convert(value);
+    const args = {
+      bubbles: true,
+      cancelable: false,
+      composed: true,
+      detail: this.convertedvalue,
+    };
+    const event = new CustomEvent("ntx-value-change", args);
+    this.dispatchEvent(event);
   }
 }
