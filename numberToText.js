@@ -27,7 +27,7 @@ export class HubNumberToText extends LitElement {
   static getMetaConfig() {
     // plugin contract information
     return {
-      controlName: "Material Text field",
+      controlName: "Material Text field 2",
       fallbackDisableSubmit: false,
       iconUrl: "one-line-text",
       version: "1",
