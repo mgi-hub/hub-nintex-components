@@ -8,7 +8,10 @@ export class HubNumberToText extends LitElement {
   @property({ type: String })
   convertedvalue: string = "";
   @property({ type: ToWords })
-  toWords = new ToWords({ localeCode: "fr-FR" });
+  toWords = new ToWords({
+    localeCode: "fr-FR",
+    converterOptions: { ignoreDecimal: false },
+  });
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     //Add custom CSS. See https://help.nintex.com/en-US/formplugins/Reference/Style.htm
@@ -51,6 +54,7 @@ export class HubNumberToText extends LitElement {
   // Render the UI as a function of component state
   render() {
     return html`<input
+        class="form-control"
         type="number"
         @change=${(e: any) => this.onInputValueChange(e.target.value)}
       />
