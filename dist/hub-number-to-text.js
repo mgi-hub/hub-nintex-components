@@ -2340,8 +2340,7 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
           standardProperties: {
             fieldLabel: true,
             description: true
-          },
-          events: ["ntx-value-change"]
+          }
         };
       }
 
