@@ -2326,7 +2326,7 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       function getMetaConfig() {
         // plugin contract information
         return {
-          controlName: "HubNumberToText",
+          controlName: "Hub Number To Text",
           fallbackDisableSubmit: false,
           iconUrl: "one-line-text",
           version: "1",
@@ -2334,14 +2334,14 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
             value: {
               type: "string",
               title: "Value",
-              // this is to mark the field as value field. it should only be defined once in the list of properties
               isValueField: true
             }
           },
           standardProperties: {
             fieldLabel: true,
             description: true
-          }
+          },
+          events: ["ntx-value-change"]
         };
       }
 
@@ -2361,6 +2361,14 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       key: "onInputValueChange",
       value: function onInputValueChange(value) {
         this.convertedvalue = this.toWords.convert(value);
+        const args = {
+          bubbles: true,
+          cancelable: false,
+          composed: true,
+          detail: this.convertedvalue
+        };
+        const event = new CustomEvent("ntx-value-change", args);
+        this.dispatchEvent(event);
       }
     }]
   };
