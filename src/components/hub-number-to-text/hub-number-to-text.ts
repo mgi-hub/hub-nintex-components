@@ -30,7 +30,7 @@ export class HubNumberToText extends LitElement {
   static getMetaConfig(): Promise<PluginContract> | PluginContract {
     // plugin contract information
     return {
-      controlName: "Material Text field",
+      controlName: "HubNumberToText",
       fallbackDisableSubmit: false,
       iconUrl: "one-line-text",
       version: "1",
@@ -40,14 +40,11 @@ export class HubNumberToText extends LitElement {
           title: "Value",
           // this is to mark the field as value field. it should only be defined once in the list of properties
           isValueField: true,
-          defaultValue: 0,
         },
       },
       standardProperties: {
         fieldLabel: true,
         description: true,
-        defaultValue: true,
-        readOnly: true,
       },
     };
   }

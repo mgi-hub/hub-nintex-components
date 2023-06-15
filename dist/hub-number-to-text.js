@@ -2326,7 +2326,7 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       function getMetaConfig() {
         // plugin contract information
         return {
-          controlName: "Material Text field",
+          controlName: "HubNumberToText",
           fallbackDisableSubmit: false,
           iconUrl: "one-line-text",
           version: "1",
@@ -2335,15 +2335,12 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
               type: "string",
               title: "Value",
               // this is to mark the field as value field. it should only be defined once in the list of properties
-              isValueField: true,
-              defaultValue: 0
+              isValueField: true
             }
           },
           standardProperties: {
             fieldLabel: true,
-            description: true,
-            defaultValue: true,
-            readOnly: true
+            description: true
           }
         };
       }
