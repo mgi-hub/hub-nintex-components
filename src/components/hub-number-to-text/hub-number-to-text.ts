@@ -45,7 +45,6 @@ export class HubNumberToText extends LitElement {
         fieldLabel: true,
         description: true,
       },
-      events: ["ntx-value-change"],
     };
   }
 
