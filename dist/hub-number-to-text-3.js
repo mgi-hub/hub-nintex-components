@@ -2279,7 +2279,7 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       decorators: [n$1({
         type: String
       })],
-      key: "convertedvalue",
+      key: "convertedValue",
       value() {
         return "";
       }
@@ -2304,18 +2304,17 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       value() {
         return i$2`
     //Add custom CSS. See https://help.nintex.com/en-US/formplugins/Reference/Style.htm
-    :host {
-      height: 100%;
-      width: 100%;
+    input {
       display: block;
-    }
-
-    .frame {
-      display: inline-block;
-      height: 100%;
       width: 100%;
-      background-color: transparent;
-      border: none;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
     }
   `;
       }
@@ -2353,22 +2352,27 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       key: "render",
       value: function render() {
         return x`<input
-        class="form-control"
         type="number"
         @change=${e => this.onInputValueChange(e.target.value)}
       />
-      <div>${this.convertedvalue}</div>`;
+      <div>${this.convertedValue}</div>`;
       }
     }, {
       kind: "method",
       key: "onInputValueChange",
       value: function onInputValueChange(value) {
-        this.convertedvalue = this.toWords.convert(value);
+        // reset convertedValue
+        this.convertedValue = "";
+        // use split because decimal numbers are not converted... so we split and convert every number between point
+        const splittedValue = value.toString().split(".");
+        splittedValue.forEach((v, index) => {
+          this.convertedValue = `${this.convertedValue} ${index > 0 ? "," : ""} ${this.toWords.convert(parseInt(v))}`;
+        });
         const args = {
           bubbles: true,
           cancelable: false,
           composed: true,
-          detail: this.convertedvalue
+          detail: this.convertedValue
         };
         const event = new CustomEvent("ntx-value-change", args);
         this.dispatchEvent(event);
