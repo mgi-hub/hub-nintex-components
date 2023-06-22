@@ -2351,11 +2351,16 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
       kind: "method",
       key: "render",
       value: function render() {
-        return x`<input
+        return x` <link
+        rel="stylesheet"
+        href="src/components/hub-number-to-text/hub-number-to-text.scss"
+      />
+      <input
+        class="form-control"
         type="number"
         @change=${e => this.onInputValueChange(e.target.value)}
       />
-      <div>${this.convertedValue}</div>`;
+      <div class="fw-bold">${this.convertedValue}</div>`;
       }
     }, {
       kind: "method",
@@ -2366,7 +2371,7 @@ let HubNumberToText = _decorate([e$1("hub-number-to-text")], function (_initiali
         // use split because decimal numbers are not converted... so we split and convert every number between point
         const splittedValue = value.toString().split(".");
         splittedValue.forEach((v, index) => {
-          this.convertedValue = `${this.convertedValue} ${index > 0 ? "," : ""} ${this.toWords.convert(parseInt(v))}`;
+          this.convertedValue = `${this.convertedValue} ${index > 0 ? "  et " : ""} ${this.toWords.convert(parseInt(v))} ${index > 0 ? " centimes" : "euros"}`;
         });
         const args = {
           bubbles: true,
