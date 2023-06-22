@@ -52,11 +52,16 @@ export class HubNumberToText extends LitElement {
 
   // Render the UI as a function of component state
   render() {
-    return html`<input
+    return html` <link
+        rel="stylesheet"
+        href="src/components/hub-number-to-text/hub-number-to-text.scss"
+      />
+      <input
+        class="form-control"
         type="number"
         @change=${(e: any) => this.onInputValueChange(e.target.value)}
       />
-      <div>${this.convertedValue}</div>`;
+      <div class="fw-bold">${this.convertedValue}</div>`;
   }
 
   onInputValueChange(value: number) {
@@ -66,8 +71,10 @@ export class HubNumberToText extends LitElement {
     const splittedValue = value.toString().split(".");
     splittedValue.forEach((v, index) => {
       this.convertedValue = `${this.convertedValue} ${
-        index > 0 ? "," : ""
-      } ${this.toWords.convert(parseInt(v))}`;
+        index > 0 ? "  et " : ""
+      } ${this.toWords.convert(parseInt(v))} ${
+        index > 0 ? " centimes" : "euros"
+      }`;
     });
     const args = {
       bubbles: true,
